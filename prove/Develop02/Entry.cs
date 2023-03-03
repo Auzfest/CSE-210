@@ -10,8 +10,8 @@ public class Entry
     {
         string[] entryValues = barSeparatedRecord.Split("|", 3, StringSplitOptions.RemoveEmptyEntries);
         this.entryDate = entryValues[0];
-        this.entryDetails = entryValues[2];
         this.promptQuestion = entryValues[1];
+        this.entryDetails = entryValues[2];
     }
     public string entryDate;
 
