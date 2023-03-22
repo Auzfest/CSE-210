@@ -9,6 +9,7 @@ class Program
 
         int quitNumber = 0;
         Goal goal = new Goal();
+        DifferentGoals differGoal = new DifferentGoals();
 
         while (quitNumber != 1)
         {
@@ -28,7 +29,10 @@ class Program
             {
                 case 1:
                     Console.WriteLine("");
-                    goal.makeNewGoal();
+                    Console.Write("type the number, Is it a temporary(1) goal or eternal(2) goal?: ");
+                    string tempOrEternalChoice = Console.ReadLine();
+                    int tempOrEternal = int.Parse(tempOrEternalChoice);                  
+                    goal.tempOrEternalCreate(tempOrEternal);
                     Console.WriteLine("Goal created!");
                     break;
 
@@ -53,7 +57,12 @@ class Program
 
                 case 5:
                     Console.WriteLine("");
-                    goal.recordEvent();
+                    goal.displayListOfGoals();
+                    Console.WriteLine("");
+                    Console.Write("Which goal have you completed?: ");
+                    string goalCompletedChoice = Console.ReadLine();
+                    int goalCompletedOption = int.Parse(goalCompletedChoice) * 2 - 1;
+                    goal.tempOrEternalRecord(goalCompletedOption);
                     Console.WriteLine("Goal updated!");
                     break;
 

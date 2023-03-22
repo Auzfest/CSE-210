@@ -1,4 +1,4 @@
-public class loadGoals
+public class loadGoals : Goal
 {
         public void Load(List<string> listOfGoals)
     {

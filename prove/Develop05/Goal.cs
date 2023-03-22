@@ -1,18 +1,26 @@
 public class Goal
 {
     private string newGoal;
-
     private int points;
-
     private List<string> listOfGoals = new List<string>();
-
     private int level;
-
     public Goal()
     {
 
     }
-    public void makeNewGoal()
+        public void tempOrEternalCreate(int chosen)
+    {
+        if (chosen == 1)
+        {
+            makeNewGoal(chosen, listOfGoals, level, points);
+        }
+        else if (chosen == 2)
+        {
+            DifferentGoals diffGoals = new DifferentGoals();
+            diffGoals.makeNewGoal(chosen, listOfGoals, level, points);
+        }
+    }
+    public virtual void makeNewGoal(int chosen, List<string> listOfGoals, int level, int points)
     {
         if (listOfGoals.Count == 0)
         {
@@ -25,12 +33,12 @@ public class Goal
         Console.Write("How many points is it worth?: ");
         string pointsChoice = Console.ReadLine();
 
-        newGoal = string.Format($"{goalChoice} | {descriptionChoice}");
+        newGoal = string.Format($"TEMPORARY | {goalChoice} | {descriptionChoice}");
         listOfGoals.Add(newGoal);
         listOfGoals.Add(pointsChoice);
     }
 
-    public virtual void displayListOfGoals()
+    public  void displayListOfGoals()
     {
         foreach(string goal in listOfGoals)
         {
@@ -57,22 +65,39 @@ public class Goal
             points = int.Parse(stringPoints);        
     }
 
-    public void recordEvent()
+    public void tempOrEternalRecord(int chosen)
     {
-        Console.WriteLine("");
-        displayListOfGoals();
-        Console.WriteLine("");
-        Console.Write("Which goal have you completed?: ");
-        string goalCompletedChoice = Console.ReadLine();
-        int goalCompletedOption = int.Parse(goalCompletedChoice) * 2;
+        string[] parts = listOfGoals[chosen].Split("|");
+        string whatIsIt = parts[0];
+        if (whatIsIt == "ETERNAL")
+        {
+            DifferentGoals diffGoals = new DifferentGoals();
+            string updatedLevel = diffGoals.recordEvent(chosen, listOfGoals, level, points);
+            listOfGoals[0] = updatedLevel;
+        }
+        else
+        {
+            recordEvent(chosen, listOfGoals, level, points);
+        }
 
-        int newPoints = int.Parse(listOfGoals[goalCompletedOption]);
+            string[] divided = listOfGoals[0].Split("|");
+
+            string stringlLevel = divided[0];
+            level = int.Parse(stringlLevel);
+            string stringPoints = divided[1];
+            points = int.Parse(stringPoints); 
+    }
+    public virtual string recordEvent(int chosen, List<string> listOfGoals, int level, int points)
+    {
+        chosen += 1;
+        int newPoints = int.Parse(listOfGoals[chosen]);
         points += newPoints;
         int dividedPoints = points / 500;
         level += dividedPoints;
 
         listOfGoals[0] = $"{level}|{points}";
-        listOfGoals[goalCompletedOption] = "COMPLETE";
+        listOfGoals[chosen] = "COMPLETE";
+        return "";
 
     }
 }
