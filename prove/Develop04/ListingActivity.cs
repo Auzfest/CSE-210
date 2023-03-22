@@ -3,7 +3,6 @@ public class ListingActivity : Activities
 
      private List<string> listOfListingPrompts = new List<string>();
 
-
      private int totalAnswers;
     public ListingActivity()
     {
