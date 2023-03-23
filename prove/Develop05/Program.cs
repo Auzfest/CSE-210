@@ -9,7 +9,7 @@ class Program
 
         int quitNumber = 0;
         Goal goal = new Goal();
-        DifferentGoals differGoal = new DifferentGoals();
+        EternalGoals differGoal = new EternalGoals();
 
         while (quitNumber != 1)
         {
@@ -29,7 +29,7 @@ class Program
             {
                 case 1:
                     Console.WriteLine("");
-                    Console.Write("type the number, Is it a temporary(1) goal or eternal(2) goal?: ");
+                    Console.Write("type the number, Is it a temporary(1) goal, eternal(2) goal or checklist(3)goal?: ");
                     string tempOrEternalChoice = Console.ReadLine();
                     int tempOrEternal = int.Parse(tempOrEternalChoice);                  
                     goal.tempOrEternalCreate(tempOrEternal);

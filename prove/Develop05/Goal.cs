@@ -16,8 +16,13 @@ public class Goal
         }
         else if (chosen == 2)
         {
-            DifferentGoals diffGoals = new DifferentGoals();
+            EternalGoals diffGoals = new EternalGoals();
             diffGoals.makeNewGoal(chosen, listOfGoals, level, points);
+        }
+        else if (chosen == 3)
+        {
+            CheckListGoals checklistGoals = new CheckListGoals();
+            checklistGoals.makeNewGoal(chosen, listOfGoals, level, points);            
         }
     }
     public virtual void makeNewGoal(int chosen, List<string> listOfGoals, int level, int points)
@@ -71,13 +76,19 @@ public class Goal
         string whatIsIt = parts[0];
         if (whatIsIt == "ETERNAL")
         {
-            DifferentGoals diffGoals = new DifferentGoals();
+            EternalGoals diffGoals = new EternalGoals();
             string updatedLevel = diffGoals.recordEvent(chosen, listOfGoals, level, points);
             listOfGoals[0] = updatedLevel;
         }
-        else
+        else if (whatIsIt == "TEMPORARY")
         {
             recordEvent(chosen, listOfGoals, level, points);
+        }
+        else if (whatIsIt == "CHECKLIST")
+        {
+            CheckListGoals checkGoals = new CheckListGoals();
+            string updatedLevel = checkGoals.recordEvent(chosen, listOfGoals, level, points);
+            listOfGoals[0] = updatedLevel;
         }
 
             string[] divided = listOfGoals[0].Split("|");

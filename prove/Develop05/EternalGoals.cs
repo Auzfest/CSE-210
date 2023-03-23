@@ -1,4 +1,4 @@
-public class DifferentGoals : Goal
+public class EternalGoals : Goal
 {
     private string newGoal;
     public override void makeNewGoal(int chosen, List<string> listOfGoals, int level, int points)
@@ -27,7 +27,6 @@ public class DifferentGoals : Goal
         int dividedPoints = points / 500;
         level += dividedPoints;
 
-        //listOfGoals[0] = $"{level}|{points}";
         string newLevel = $"{level}|{points}";
         return newLevel;
     }
